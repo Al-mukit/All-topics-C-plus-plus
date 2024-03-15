@@ -1,0 +1,80 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class ATM {
+private:
+    float balance;
+
+public:
+    ATM() {
+        balance = 0;
+    }
+
+    void checkBalance() {
+        cout << "Your balance is: $" << fixed << setprecision(2) << balance << endl;
+    }
+
+    void deposit(float amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "Deposit successful. Current balance: $" << fixed << setprecision(2) << balance << endl;
+        } else {
+            cout << "Invalid amount for deposit." << endl;
+        }
+    }
+
+    void withdraw(float amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            cout << "Withdrawal successful. Current balance: $" << fixed << setprecision(2) << balance << endl;
+        } else {
+            cout << "Insufficient funds or invalid amount for withdrawal." << endl;
+        }
+    }
+};
+
+int main() {
+    ATM atm;
+    int choice;
+    float amount;
+
+    cout << "Welcome to ATM Management System" << endl;
+
+    do {
+        cout << "\nSelect an option:" << endl;
+        cout << "1. Check Balance" << endl;
+        cout << "2. Deposit" << endl;
+        cout << "3. Withdraw" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                atm.checkBalance();
+                break;
+            case 2:
+                cout << "Enter amount to deposit: $";
+                cin >> amount;
+                atm.deposit(amount);
+                break;
+            case 3:
+                cout << "Enter amount to withdraw: $";
+                cin >> amount;
+                atm.withdraw(amount);
+                break;
+            case 4:
+                cout << "Exiting ATM. Thank you for using our services!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+
+//@ALmukit 
