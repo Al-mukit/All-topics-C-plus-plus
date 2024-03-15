@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+class CyberManager {
+private:
+    map<string, string> data;
+
+public:
+    void addData(const string& key, const string& value) {
+        data[key] = value;
+        cout << "Data added successfully." << endl;
+    }
+
+    void removeData(const string& key) {
+        if (data.find(key) != data.end()) {
+            data.erase(key);
+            cout << "Data removed successfully." << endl;
+        } else {
+            cout << "Data not found." << endl;
+        }
+    }
+
+    void displayData() {
+        if (data.empty()) {
+            cout << "No data available." << endl;
+        } else {
+            cout << "Cyber Management System Data:" << endl;
+            for (const auto& entry : data) {
+                cout << entry.first << ": " << entry.second << endl;
+            }
+        }
+    }
+};
+
+int main() {
+    CyberManager manager;
+    int choice;
+    string key, value;
+
+    cout << "Welcome to Cyber Management System" << endl;
+
+    do {
+        cout << "\nSelect an option:" << endl;
+        cout << "1. Add Data" << endl;
+        cout << "2. Remove Data" << endl;
+        cout << "3. Display Data" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter key: ";
+                cin >> key;
+                cout << "Enter value: ";
+                cin >> value;
+                manager.addData(key, value);
+                break;
+            case 2:
+                cout << "Enter key to remove: ";
+                cin >> key;
+                manager.removeData(key);
+                break;
+            case 3:
+                manager.displayData();
+                break;
+            case 4:
+                cout << "Exiting Cyber Management System. Thank you for using our services!" << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+
+// @Almukit
